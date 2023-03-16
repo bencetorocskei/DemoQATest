@@ -1,20 +1,29 @@
-package browserwindow;
+package stepDefinitions;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import pagefactory.AlertsPage;
 import pagefactory.BrowserWindowsPage;
 import pagefactory.SamplePage;
 
+import static pagefactory.WebDriverFactory.shutDown;
+
 public class BrowserWindowSteps {
     BrowserWindowsPage browserWindow;
-    SamplePage samplePage = new SamplePage();
+    SamplePage samplePage;
+    @Before
+    public void setUp() {
+        browserWindow = new BrowserWindowsPage();
+        samplePage = new SamplePage();
+    }
 
     @Given("I am on the demoQA Browser Window page")
     public void i_am_on_the_demo_qa_browser_window_page() {
-        browserWindow = new BrowserWindowsPage();
+        browserWindow.navigate();
     }
 
     @When("I click on the New Tab button")
@@ -45,10 +54,25 @@ public class BrowserWindowSteps {
         Assertions.assertEquals(expected, current);
 
     }
+/*
+    @When("I click on the New Window message button")
+    public void i_click_on_the_new_window_message_button() {
+        browserWindow.clickOnTheNewWindowMessageButton();
+    }
+    @Then("I see a new window with a message")
+    public void i_see_a_new_window_with_a_message() {
+        System.out.println("Current:" + browserWindow.getUrl());
+        browserWindow.switchToNewWindow();
+        //browserWindow.switchTo();
+        //System.out.println(browserWindow.getBodyText());
+        System.out.println(browserWindow.getUrl());
+        //System.out.println(browserWindow.getBodyText());
 
+    }*/
 
     @After
-    public void quit() {
+    public void tearDown() {
         browserWindow.shutDown();
     }
+
 }

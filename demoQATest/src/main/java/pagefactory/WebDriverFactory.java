@@ -7,8 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverFactory {
 
-   public static WebDriver driver = null;
-
+   private static WebDriver driver = null;
+/*
     public static WebDriver createWebDriver(String browserType) {
         if(driver == null) {
             switch(browserType){
@@ -17,6 +17,14 @@ public class WebDriverFactory {
                 case "firefox":
                     return driver = new FirefoxDriver();
             }
+
+        }
+        return driver;
+    }*/
+
+    public static WebDriver createWebDriver() {
+        if (driver == null) {
+            driver = new ChromeDriver();
 
         }
         return driver;

@@ -13,7 +13,7 @@ public class BasePage {
     WebDriverWait wait;
 
     public BasePage() {
-        this.driver = WebDriverFactory.createWebDriver("chrome");
+        this.driver = WebDriverFactory.createWebDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
     }

@@ -10,3 +10,8 @@ Feature: Browse Window
     Given I am on the demoQA Browser Window page
     When I click on the New Window button
     Then I see a new sample page window
+
+#  Scenario: Test New Window message button
+#    Given I am on the demoQA Browser Window page
+#    When I click on the New Window message button
+#    Then I see a new window with a message

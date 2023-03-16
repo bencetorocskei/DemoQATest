@@ -6,13 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
+import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class BrowserWindowsPage extends BasePage {
 
     public BrowserWindowsPage() {
         super();
-        String url = "https://demoqa.com/browser-windows";
-        driver.get(url);
     }
 
     @FindBy(id = "tabButton")
@@ -26,6 +25,13 @@ public class BrowserWindowsPage extends BasePage {
 
     @FindBy (id = "sampleHeading")
     WebElement heading;
+
+
+    @FindBy (tagName = "body")
+    WebElement body;
+
+    @FindBy (id = "text")
+    WebElement text;
 
     private String originalWindow = driver.getWindowHandle();
 
@@ -55,22 +61,25 @@ public class BrowserWindowsPage extends BasePage {
         }
     }
 
-    public String getText() {
-        wait.until(ExpectedConditions.urlContains("sample"));
-        wait.until(ExpectedConditions.visibilityOf(heading));
-        return heading.getText();
+    public void navigate() {
+        driver.get("https://demoqa.com/browser-windows");
     }
 
     public String getUrl() {
-        //wait.until(ExpectedConditions.urlContains("sample"));
         return driver.getCurrentUrl();
     }
 
-    public boolean isPageReady() {
-        return driver.getCurrentUrl().contains("sample");
+
+    public String getBodyText() {
+        wait.until(ExpectedConditions.visibilityOf(body));
+        return body.getText();
     }
 
+    public int getSize() {
+        return driver.getWindowHandles().size();
+    }
 
-
-
+    public void switchTo() {
+        driver.switchTo().window(driver.getWindowHandle());
+    }
 }
